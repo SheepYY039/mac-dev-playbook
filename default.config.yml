@@ -1,28 +1,57 @@
 ---
 downloads: ~/.ansible-downloads/
 
-configure_dotfiles: true
-configure_terminal: true
+configure_dotfiles: false
+configure_terminal: false
 configure_osx: true
 
 # Set to 'true' to configure the Dock via dockutil.
-configure_dock: true
+configure_dock: false
 dockitems_remove:
   - "Siri"
   - "TV"
   - "Podcasts"
   - "Music"
   - "App Store"
-  - "Facetime"
+  - "FaceTime"
   - "Messages"
   - "News"
   - "Contacts"
   - "Maps"
+  - "Freeform"
+  - "Reminders"
 
 dockitems_persist:
+  - name: "Finder"
+    path: "/System/Library/CoreServices/Finder.app"
+    pos: 0
+  - name: "Launchpad"
+    path: "/Applications/Launchpad.app/"
+    pos: 1
+  - name: "System Settings"
+    path: "/Applications/System Settings.app/"
+    pos: 2
+  - name: "Mail"
+    path: "/Applications/Mail.app/"
+    pos: 3
+  - name: "Google Chrome"
+    path: "/Applications/Google Chrome.app/"
+    pos: 4
+  - name: "WhatsApp"
+    path: "/Applications/WhatsApp.app/"
+    pos: 5
+  - name: "Termius"
+    path: "/Applications/Termius.app/"
+    pos: 6
+  - name: "iTerm2"
+    path: "/Applications/iTerm.app/"
+    pos: 7
   - name: "Sublime Text"
     path: "/Applications/Sublime Text.app/"
-    pos: 5
+    pos: 8
+  - name: "Visual Studio Code"
+    path: "/Applications/Visual Studio Code.app/"
+    pos: 9
 
 configure_sudoers: false
 sudoers_custom_config: ""
@@ -31,60 +60,85 @@ sudoers_custom_config: ""
 #   # Allow users in admin group to use sudo with no password.
 #   %admin ALL=(ALL) NOPASSWD: ALL
 
-dotfiles_repo: https://github.com/sheepyy039/dotfiles.git
-dotfiles_repo_accept_hostkey: true
-dotfiles_repo_local_destination: ~/Development/GitHub/dotfiles
-dotfiles_files:
-  - .zshrc
-  - .gitignore
-  - .inputrc
-  - .osx
-  - .vimrc
+# dotfiles_repo: https://github.com/sheepyy039/dotfiles.git
+# dotfiles_repo_accept_hostkey: true
+# dotfiles_repo_local_destination: ~/Development/GitHub/dotfiles
+# dotfiles_files:
+#   - .zshrc
+#   - .gitignore
+#   - .inputrc
+#   - .osx
+#   - .vimrc
+
+dotfiles_repository_url: "https://github.com/sheepyy039/dotfiles.git"
+dotfiles_repository_branch: main
 
 homebrew_installed_packages:
   # - ansible # Installed via Pip.
   - autoconf
   - bash-completion
-  - doxygen
-  - gettext
-  - gifsicle
+  - chezmoi
+  - cmake
+  - coreutils
+  - cowsay
+  # - doxygen
+  - ffmpeg
+  - fzf
+  # - gettext
+  # - gifsicle
   - git
   - gh
   - go
   - gpg
-  - httpie
-  - iperf
-  - libevent
-  - sqlite
+  - htop
+  # - httpie
+  # - iperf
+  # - libevent
+  # - sqlite
+  - mackup
   - nmap
   - node
   - nvm
-  - php
-  - ssh-copy-id
-  - cowsay
-  - readline
   - openssl
-  - pv
+  - php
+  - readline
+  - ripgrep
+  - ssh-copy-id
+  - tree
+  # - pv
   - wget
-  - wrk
-  - zsh-history-substring-search
+  # - wrk
+  # - zsh-history-substring-search
 
-homebrew_taps: []
+homebrew_taps: 
+  - homebrew/cask-fonts
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
+  - alfred
+  - appcleaner
   - chromedriver
   - firefox
+  - font-meslo-lg-nerd-font
+  - font-fira-code-nerd-font
   - google-chrome
-  - sublime-text
-  - visual-studio-code
-  - alfred
   - iterm2
-  - appcleaner
-  # - transmit
+  - onedrive
+  - rectangle
+  - sublime-text
+  - tailscale
+  - termius
+  - visual-studio-code
+  - whatsapp
+  - wechat
 
 # See `geerlingguy.mas` role documentation for usage instructions.
-mas_installed_apps: []
+mas_installed_apps:
+  - { id: 425424353, name: "The Unarchiver" }
+mas_uninstalled_apps:
+  - { id: 409201541, name: "Pages" }
+  - { id: 409203825, name: "Numbers" }
+  - { id: 682658836, name: "GarageBand" }
 mas_email: ""
 mas_password: ""
 
@@ -105,7 +159,10 @@ npm_packages: []
 # - name: webpack
 #   state: present # present/absent/latest, default: present
 #   version: "^2.6" # default: N/A
-pip_packages: []
+pip_packages: 
+  - name: ansible-lint
+    state: present
+
 # - name: mkdocs
 #   state: present # present/absent/latest, default: present
 #   version: "0.16.3" # default: N/A
